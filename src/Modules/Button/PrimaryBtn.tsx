@@ -1,12 +1,17 @@
 import React from 'react'
+import styles from "./primaryBtn.module.css"
+import Arrow from "./Assets/Arrow.svg"
 
-function PrimaryBtn() {
+function PrimaryBtn(props) {
   return (
-    <div>
-      <h1>Hello</h1>
-    </div>
+    <>
+      <button className={styles.btn}>
+        <div>{props.name}</div>
+        <div><img src={Arrow} /></div>
+    </button>
+    </>
   )
 }
 
-export default PrimaryBtn
+export default PrimaryBtn;
 

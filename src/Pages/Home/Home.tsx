@@ -1,10 +1,10 @@
 import React from 'react'
-import PrimaryBtn from '../../Modules/Button/PrimaryBtn'
+import PrimaryBtn from '../../Modules/Button/primaryBtn'
 
 export default function Home() {
   return (
     <div>
-      <PrimaryBtn />
+      hello
     </div>
   )
 }
