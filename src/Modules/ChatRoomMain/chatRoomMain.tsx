@@ -39,6 +39,12 @@ const ChatRoom = () => {
     }
   };
 
+    const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      handleMessageSend();
+    }
+  };
+
   return (
     <>
       
@@ -72,7 +78,8 @@ const ChatRoom = () => {
         <input
           type="text"
           value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
+            onChange={(e) => setInputValue(e.target.value)}
+            onKeyDown={handleKeyPress}
           placeholder="Type your message..."
           className={styles.chatRoomChatboxInput}/>
         <button onClick={handleMessageSend} className={styles.chatRoomChatboxSendbutton}>
