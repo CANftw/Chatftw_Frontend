@@ -1,10 +1,10 @@
 import React from 'react'
-import PrimaryBtn from '../../Modules/Button/primaryBtn'
+import ChatRoom from '../../Modules/ChatRoomMain/chatRoomMain' 
 
 export default function Home() {
   return (
     <div>
-      hello
+     <h1 style={{padding:"20px"}}>Welcome Home!</h1>
     </div>
   )
 }
