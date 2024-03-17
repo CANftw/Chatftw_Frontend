@@ -1,0 +1,23 @@
+.home {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+
+.homeTilte {
+  span {
+    color: #1993ff;
+  }
+}
+
+.homeButton {
+  padding: 10px 20px;
+  background-color: #ff682f;
+  color: white;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+}
