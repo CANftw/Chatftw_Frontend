@@ -4,6 +4,8 @@ import SecondaryBtn from "../../Modules/Button/secondaryBtn";
 import TextInput from "../../Modules/Input/textInput";
 import PasswordInput from "../../Modules/Input/passwordInput";
 import { useNavigate } from "react-router-dom";
+import image from "./Assets/Frame 55.png"
+
 export default function Login() {
 
   const navigate = useNavigate();
@@ -26,7 +28,8 @@ export default function Login() {
             <SecondaryBtn name="Sign up instead" onClick={() => { navigate('/signup') }} />
           </div>
         </div>
-      </div>
+        </div>
+
     </div>
   );
 }

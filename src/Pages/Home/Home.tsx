@@ -6,10 +6,9 @@ export default function Home() {
   const navigate = useNavigate();
 
   return (
-    <div className={styles["home-container"]}>
-      <h1 className={styles["home-title"]}>Welcome to the Chatroom!</h1>
-      <p className={styles["home-description"]}>Join the conversation and connect with others.</p>
-      <button className={styles["home-button"]} onClick={() => navigate("/login")}>Get Started</button>
+    <div className={styles.home}>
+      <h1 className={styles.homeTitle}>Welcome to the <span>Chatroom!</span></h1>
+      <button className={styles.homeButton} onClick={() => navigate("/login")}>Get Started</button>
     </div>
   );
 }
