@@ -1,30 +1,13 @@
-import React, { useState } from 'react';
-import ChatroomList from '../../Modules/ChatRoomList/chatRoomList';
-import MainChatroom from '../../Modules/ChatRoomMain/chatRoomMain';
+import React from 'react'
+import styles from './chatRoom.module.css'
+import send from "./Assets/Vector.svg"
+import ChatRoom from '../../Modules/ChatRoomMain/chatRoomMain'
 
-const App = () => {
-  const [selectedRoom, setSelectedRoom] = useState(null); // State to store the ID of the selected chatroom
-
-  // Sample chatroom data
-  const chatrooms = [
-    { id: 1, name: 'Room 1' },
-    { id: 2, name: 'Room 2' },
-    { id: 3, name: 'Room 3' },
-  ];
-
-  const handleSelectRoom = roomId => {
-    setSelectedRoom(roomId);
-  };
-
+export default function chatRoom() {
   return (
-    <div>
-      <ChatroomList 
-              chatrooms={chatrooms}
-              selectedRoom={selectedRoom}
-              onSelectRoom={handleSelectRoom}/>
-      <MainChatroom/>
-    </div>
-  );
-};
+    <>
+    <ChatRoom />
+    </>
+  )
+}
 
-export default App;

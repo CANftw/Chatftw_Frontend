@@ -5,51 +5,101 @@
   height: 50vh;
 }
 
-.messageContainer {
-  flex: 1;
-  overflow-y: auto;
+.top {
+  width: 75vw;
+  padding: 20px;
+  margin-left: auto;
+  margin-right: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
 }
 
-.messages {
+.topLogoname {
+  font-weight: bolder;
+  font-size: 18px;
+  text-transform: uppercase;
+}
+
+.topNum {
+  color: #555555;
+  font-weight: 700;
+  span {
+    font-weight: 400;
+  }
+}
+
+.chatRoomContainer {
+  width: 75vw;
+  position: absolute;
+  bottom: 140px;
+  right: 20px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.chatRoomContainerInner {
   display: flex;
   flex-direction: column;
-  padding: 10px;
+  align-items: flex-start;
+  gap: 4px;
+  width: 100%;
 }
 
-.message {
+.chatRoomContainerInnerMessage {
   margin-bottom: 5px;
 }
 
-.sender {
+.chatRoomContainerInnerMessageSender {
   font-weight: bold;
   margin-bottom: 5px;
 }
 
-.receivedMessage {
-  padding: 5px 10px;
-  border-radius: 10px;
-  align-self: flex-start;
+.chatRoomChatbox {
+  width: 75vw;
+  height: 45px;
+  position: fixed;
+  bottom: 30px;
+  right: 20px;
+  border: 1px;
+  overflow: hidden;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: -15px 27px 44.6px 0px rgba(182, 205, 213, 0.5);
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding: 5px;
 }
 
-.inputContainer {
+.chatRoomChatboxInput {
+  width: calc(99% - 80px);
+  height: 100%;
+  margin-bottom: 0;
+  border: none;
+  outline: none;
+  padding: 30px;
+  box-sizing: border-box;
+  float: left;
+}
+
+.chatRoomChatboxSendbutton {
+  width: 40px;
+  height: 100%;
+  color: #fff;
+  background-color: #fff;
+  border: none;
+  cursor: pointer;
   display: flex;
   align-items: center;
-  padding: 10px;
+  justify-content: center;
+  padding: 0;
 }
 
-.input {
-  flex: 1;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  margin-right: 10px;
-}
-
-.sendButton {
-  padding: 8px 16px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+.chatRoomChatboxSendbutton:hover {
+  background-color: #ebebeb;
 }

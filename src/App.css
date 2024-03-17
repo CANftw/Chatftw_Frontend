@@ -5,6 +5,10 @@
   padding: 0;
 }
 
+body{
+  font-family: "Almarai";
+}
+
 h3{
     color: #949494;
     font-family: "Almarai";
