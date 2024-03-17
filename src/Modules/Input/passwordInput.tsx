@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import styles from './passwordInput.module.css'; // Import styles from PasswordInput.module.css
-import EyeIcon from './Assets/eye.svg'; // Import eye.svg as an image
-import CrossedEyeIcon from './Assets/crossed-eye.svg'; // Import crossed-eye.svg as an image
+import styles from './passwordInput.module.css';
+import EyeIcon from './Assets/eye.svg';
+import CrossedEyeIcon from './Assets/crossed-eye.svg'; 
 
 function PasswordInput() {
   const [isFocused, setIsFocused] = useState(false);

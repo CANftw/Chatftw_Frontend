@@ -1,0 +1,29 @@
+/* ChatroomList.module.css */
+.chatroom-list {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+  }
+  
+  .chatroom {
+    width: 80%;
+    padding: 10px 20px;
+    cursor: pointer;
+    border: none;
+    border-radius: 15px;
+    background-color: transparent;
+    border-bottom: 1px solid #B6CDD5;
+    margin-bottom: 10px; /* Add margin to create a gap */
+  }
+  .chatroom:not(.selected):hover {
+    background-color: #f0f0f0;
+  }
+  
+  .selected {
+    background-color:#1C2E54;
+    color: #ffffff;
+    border: 0px, 0px, 1px, 0px;
+    border-radius: 15px;
+    transform: translateY(-2px);
+  }
+  

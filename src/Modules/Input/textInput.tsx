@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from './textInput.module.css'; // You can style your input box in InputBox.css
+import styles from './textInput.module.css';
 
 function TextInput() {
   const [isFocused, setIsFocused] = useState(false);
