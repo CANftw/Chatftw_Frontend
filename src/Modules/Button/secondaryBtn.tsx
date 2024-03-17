@@ -1,10 +1,14 @@
-import React from 'react'
 import styles from "./secondaryBtn.module.css"
 
-function SecondaryBtn(props) {
+type Props = {
+  name: string
+  onClick?: () => void
+}
+
+function SecondaryBtn(props: Props) {
   return (
     <>
-      <button className={styles.btn}>{props.name}</button>
+      <button className={styles.btn} onClick={props.onClick}>{props.name}</button>
     </>
   )
 }

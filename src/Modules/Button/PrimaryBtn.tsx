@@ -1,14 +1,18 @@
-import React from 'react'
 import styles from "./primaryBtn.module.css"
 import Arrow from "./Assets/Arrow.svg"
 
-function PrimaryBtn(props) {
+type Props = {
+  name: string
+  onClick?: () => void
+}
+
+function PrimaryBtn(props: Props) {
   return (
     <>
-      <button className={styles.btn}>
+      <button className={styles.btn} onClick={props.onClick}>
         <div>{props.name}</div>
         <div><img src={Arrow} /></div>
-    </button>
+      </button>
     </>
   )
 }

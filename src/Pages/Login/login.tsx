@@ -1,11 +1,13 @@
-import React from "react";
 import styles from "./login.module.css";
-import PrimaryBtn from "../../Modules/Button/primaryBtn.tsx";
-import SecondaryBtn from "../../Modules/Button/secondaryBtn.tsx";
-import TextInput from "../../Modules/Input/textInput.tsx";
-import PasswordInput from "../../Modules/Input/passwordInput.tsx";
-
+import PrimaryBtn from "../../Modules/Button/PrimaryBtn";
+import SecondaryBtn from "../../Modules/Button/secondaryBtn";
+import TextInput from "../../Modules/Input/textInput";
+import PasswordInput from "../../Modules/Input/passwordInput";
+import { useNavigate } from "react-router-dom";
 export default function Login() {
+
+  const navigate = useNavigate();
+
   return (
     <div className={styles.login}>
       <div className={styles.loginBoundingbox}>
@@ -18,10 +20,10 @@ export default function Login() {
             <h3>Enter your credential to continue</h3>
           </div>
           <TextInput />
-          <PasswordInput/>
+          <PasswordInput />
           <div className={styles.loginButtons}>
             <PrimaryBtn name="Login" />
-            <SecondaryBtn name="Sign up instead" />
+            <SecondaryBtn name="Sign up instead" onClick={() => { navigate('/signup') }} />
           </div>
         </div>
       </div>

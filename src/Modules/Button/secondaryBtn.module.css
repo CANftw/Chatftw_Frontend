@@ -11,4 +11,9 @@
     border: 0;
     font-weight: 300;
     font-size: 18px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: #b9b9b9;
 }
