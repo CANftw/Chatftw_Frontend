@@ -22,7 +22,7 @@ export default function Login() {
           <TextInput />
           <PasswordInput />
           <div className={styles.loginButtons}>
-            <PrimaryBtn name="Login" />
+            <PrimaryBtn name="Login" onClick={()=>{navigate("/chatroom")}} />
             <SecondaryBtn name="Sign up instead" onClick={() => { navigate('/signup') }} />
           </div>
         </div>

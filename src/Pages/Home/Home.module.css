@@ -1,0 +1,50 @@
+.home-container{
+   height: 100vh;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   gap: 3rem;
+}
+
+.home-title {
+    font-family: "Almarai";
+    font-size: 28.554px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    
+    span{
+        color: #1993FF;
+    }
+}
+
+.home-description{
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.home-button{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height:  40px;
+        width: 200px;
+        padding: 10px 15px;
+        gap: 10px;
+        border-radius: 16px;
+        background: #FF682F;
+        color: white;
+        border: none;
+        cursor: pointer;
+        font-weight: 400;
+        font-size: 18px;  
+        margin-top: 2rem;      
+}
+.home-button:hover{
+    background: #d25325;
+}
+
+
+.home-container img{
+    height: 50%;
+}
