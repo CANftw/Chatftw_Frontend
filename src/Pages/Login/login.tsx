@@ -4,7 +4,7 @@ import SecondaryBtn from "../../Modules/Button/secondaryBtn";
 import TextInput from "../../Modules/Input/textInput";
 import PasswordInput from "../../Modules/Input/passwordInput";
 import { useNavigate } from "react-router-dom";
-import image from "./Assets/Frame 55.png"
+import LoginImage from "./Assets/Frame 55.png"
 
 export default function Login() {
 
@@ -27,6 +27,9 @@ export default function Login() {
             <PrimaryBtn name="Login" onClick={()=>{navigate("/chatroom")}} />
             <SecondaryBtn name="Sign up instead" onClick={() => { navigate('/signup') }} />
           </div>
+        </div>
+        <div className={styles['loginImage']}>
+          <img src={LoginImage} alt="" />
         </div>
         </div>
 
