@@ -48,3 +48,19 @@
 .home-container img{
     height: 50%;
 }
+
+
+@media (width<1250px){
+    .home-container{
+        flex-direction:column-reverse;
+    }
+}
+
+@media (width<400px){
+    .home-title{
+        font-size: 24px;
+    }
+    .home-description{
+        font-size: 20px;
+    }
+}
