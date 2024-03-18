@@ -1,9 +1,29 @@
-import React, { useState, useRef, useEffect } from 'react';
+import{ useState, useRef, useEffect } from 'react';
 import styles from './chatRoomMain.module.css';
 import send from "./Assets/Vector.svg";
 import smiley from "./Assets/smiley.svg";
+import ChatroomList from '../ChatRoomList/chatRoomList';
+import BackBtn from '../Button/backBtn';
+
 
 const ChatRoom = () => {
+
+    const [chatrooms, setChatrooms] = useState([
+    { id: 1, name: 'General' },
+    { id: 2, name: 'Random' },
+    { id: 3, name: 'Tech Talk' },
+    // Add more chatrooms as needed
+  ]);
+
+  // State for selected room
+  const [selectedRoom, setSelectedRoom] = useState(null);
+
+  // Function to handle selecting a room
+  const onSelectRoom = roomId => {
+    setSelectedRoom(roomId);
+    // Additional logic if needed
+  };
+
   const [messages, setMessages] = useState([
     { text: "Hello!", sender: "Rohan" },
     { text: "Hi there!", sender: "Don" },
@@ -47,14 +67,21 @@ const ChatRoom = () => {
 
   return (
     <>
-      
+      <div className={styles.back}>
+        <BackBtn name='Back' />
+        </div>
       <div className={styles.top}>
         <div className={styles.toplogo}>
           <div className={styles.topLogoname}>Hermesphere</div>
           <div className={styles.topLogoSub}>Speak freely</div>
         </div>
         <div className={styles.topNum}>69K+<span>online</span></div>
-    </div>
+      </div>
+
+      <div className={styles.list}>
+        <p>Recent Chat rooms</p>
+          <ChatroomList chatrooms={chatrooms} selectedRoom={selectedRoom} onSelectRoom={onSelectRoom} />
+      </div>
     <div className={styles.chatRoom}>
       <div className={styles.chatRoomContainer}>
         <div className={styles.chatRoomContainerInner}>
@@ -86,7 +113,7 @@ const ChatRoom = () => {
           <img src={send} />
         </button>
       </div>
-    </div>
+      </div>
     </>
   );
 };

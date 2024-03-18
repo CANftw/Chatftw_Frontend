@@ -1,6 +1,6 @@
 
 import React from 'react';
-import styles from './chatRoomList.module.css'; // Import CSS module
+import styles from './chatRoomList.module.css';
 
 const ChatroomList = ({ chatrooms, selectedRoom, onSelectRoom }) => {
   return (
