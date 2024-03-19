@@ -10,25 +10,31 @@ import axios from 'axios'; // Import Axios
 
 export default function Login() {
   const navigate = useNavigate();
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  const baseUrl = 'http://localhost:8080';
+  const baseUrl = 'http://localhost:8080/api/v1';
 
   const handleLogin = async () => {
     try {
       // Send the user's credentials to the server for verification using Axios
-      const response = await axios.post(`${baseUrl}/api/login`, { 
-        "email": username, 
-        "passwird": password });
+      const response = await axios.post(`${baseUrl}/auth/login`, { 
+        "email": email, 
+        "password": password 
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
 
-      if (!response.data.success) {
-        throw new Error('Login failed');
-      }
+      
 
       // Redirect the user to the chatroom if login is successful
       navigate('/chatroom');
-    } catch (error) {
+    } catch (error:any) {
+      console.log(error);
+      
       // Display an error message if login fails
       setError('Invalid username or password');
     }
@@ -46,12 +52,13 @@ export default function Login() {
             <h3>Enter your credentials to continue</h3>
           </div>
           <TextInput
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            placeholder={'Username'}
+            value={email}
+            onChange={(e:any) => setEmail(e.target.value)}
           />
           <PasswordInput
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e:any) => setPassword(e.target.value)}
           />
           {error && <p className={styles.error}>{error}</p>}
           <div className={styles.loginButtons}>
