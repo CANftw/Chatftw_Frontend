@@ -3,7 +3,12 @@ import styles from './passwordInput.module.css';
 import EyeIcon from './Assets/eye.svg';
 import CrossedEyeIcon from './Assets/crossed-eye.svg'; 
 
-function PasswordInput() {
+type PROPS ={
+  value : string,
+  onChange : (e:any) => void
+}
+
+function PasswordInput(props:PROPS) {
   const [isFocused, setIsFocused] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
@@ -27,6 +32,8 @@ function PasswordInput() {
         type={showPassword ? 'text' : 'password'}
         onFocus={handleFocus}
         onBlur={handleBlur}
+        value={props.value}
+        onChange={props.onChange}
       />
       <label>Password</label>
       <div className={styles.passwordToggle} onClick={togglePasswordVisibility}>

@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import styles from './textInput.module.css';
 
-function TextInput() {
+function TextInput({placeholder,onChange,value}:{placeholder: string,onChange: (e:any)=> void,value: string}) {
   const [isFocused, setIsFocused] = useState(false);
 
   const handleFocus = () => {
     setIsFocused(true);
   };
 
-  const handleBlur = (event) => {
+  const handleBlur = (event:any) => {
     if (event.target.value === '') {
       setIsFocused(false);
     }
@@ -20,8 +20,10 @@ function TextInput() {
         type="text"
         onFocus={handleFocus}
         onBlur={handleBlur}
+        value={value}
+        onChange={onChange}
       />
-      <label>Username</label>
+      <label>{placeholder}</label>
     </div>
   );
 }
