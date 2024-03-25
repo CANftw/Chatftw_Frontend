@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import styles from './login.module.css';
 import PrimaryBtn from '../../Modules/Button/PrimaryBtn';
 import SecondaryBtn from '../../Modules/Button/secondaryBtn';
@@ -27,6 +27,7 @@ export default function Login() {
           'Content-Type': 'application/json'
         }
       });
+      console.log(response);
 
       
 

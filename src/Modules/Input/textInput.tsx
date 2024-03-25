@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import styles from './textInput.module.css';
 
 function TextInput({placeholder,onChange,value}:{placeholder: string,onChange: (e:any)=> void,value: string}) {

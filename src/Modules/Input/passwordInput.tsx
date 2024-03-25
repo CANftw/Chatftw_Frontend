@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import styles from './passwordInput.module.css';
 import EyeIcon from './Assets/eye.svg';
 import CrossedEyeIcon from './Assets/crossed-eye.svg'; 
@@ -16,7 +16,7 @@ function PasswordInput(props:PROPS) {
     setIsFocused(true);
   };
 
-  const handleBlur = (event) => {
+  const handleBlur = (event: { target: { value: string; }; }) => {
     if (event.target.value === '') {
       setIsFocused(false);
     }
