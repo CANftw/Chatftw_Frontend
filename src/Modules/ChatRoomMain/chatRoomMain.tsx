@@ -1,6 +1,6 @@
-import{ useState, useRef, useEffect } from 'react';
+import{ useState, useRef, useEffect, SetStateAction } from 'react';
 import styles from './chatRoomMain.module.css';
-import send from "./Assets/Vector.svg";
+import send from "./Assets/vector.svg";
 import smiley from "./Assets/smiley.svg";
 import ChatroomList from '../ChatRoomList/chatRoomList';
 import BackBtn from '../Button/backBtn';
@@ -8,7 +8,7 @@ import BackBtn from '../Button/backBtn';
 
 const ChatRoom = () => {
 
-    const [chatrooms, setChatrooms] = useState([
+    const [chatrooms] = useState([
     { id: 1, name: 'General' },
     { id: 2, name: 'Random' },
     { id: 3, name: 'Tech Talk' },
@@ -19,7 +19,7 @@ const ChatRoom = () => {
   const [selectedRoom, setSelectedRoom] = useState(null);
 
   // Function to handle selecting a room
-  const onSelectRoom = roomId => {
+  const onSelectRoom = (roomId: SetStateAction<null>) => {
     setSelectedRoom(roomId);
     // Additional logic if needed
   };
@@ -32,7 +32,7 @@ const ChatRoom = () => {
     { text: "OKay!", sender: "Reo" }
   ]);
   const [inputValue, setInputValue] = useState('');
-  const messagesEndRef = useRef(null);
+  const messagesEndRef = useRef<null | HTMLDivElement>(null); 
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -42,10 +42,10 @@ const ChatRoom = () => {
     scrollToBottom();
   }, [messages]);
 
-  const getColorForUser = (username) => {
+  const getColorForUser = (username: string) => {
     const colors = ['#FF2F2F', '#5519FF', '#1922FF', '#1993FF'];
     const index = username.charCodeAt(0) % colors.length;
-    return colors[index];
+    return colors[index]; 
   };
 
   const handleMessageSend = () => {
@@ -59,7 +59,7 @@ const ChatRoom = () => {
     }
   };
 
-    const handleKeyPress = (event) => {
+    const handleKeyPress = (event: { key: string; }) => {
     if (event.key === 'Enter') {
       handleMessageSend();
     }

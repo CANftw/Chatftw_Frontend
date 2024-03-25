@@ -1,15 +1,17 @@
-
-import React from 'react';
 import styles from './chatRoomList.module.css';
-
-const ChatroomList = ({ chatrooms, selectedRoom, onSelectRoom }) => {
+type Props = {
+  chatrooms: any
+  selectedRoom: null
+  onSelectRoom: any
+}
+const ChatroomList = (props: Props) => {
   return (
     <div className={styles['chatroom-list']}>
-      {chatrooms.map(chatroom => (
+      {props.chatrooms.map((chatroom: { id: number;name: string }) => (
         <div
           key={chatroom.id}
-          className={`${styles.chatroom} ${selectedRoom === chatroom.id ? styles.selected : ''}`}
-          onClick={() => onSelectRoom(chatroom.id)}
+          className={`${styles.chatroom} ${props.selectedRoom === chatroom.id ? styles.selected : ''}`}
+          onClick={() => props.onSelectRoom(chatroom.id)}
         >
           {chatroom.name}
         </div>
