@@ -1,6 +1,6 @@
 import{ useState, useRef, useEffect, SetStateAction } from 'react';
 import styles from './chatRoomMain.module.css';
-import send from "./Assets/vector.svg";
+import send from "./Assets/Vector.svg";
 import smiley from "./Assets/smiley.svg";
 import ChatroomList from '../ChatRoomList/chatRoomList';
 import BackBtn from '../Button/backBtn';
