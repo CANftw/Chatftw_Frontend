@@ -32,6 +32,7 @@ export default function Login() {
           'Content-Type': 'application/json'
         }
       });
+      console.log(response)
       
       navigate('/chatroom');// Redirect to the chatroom if login is successful
     } catch (error) {
