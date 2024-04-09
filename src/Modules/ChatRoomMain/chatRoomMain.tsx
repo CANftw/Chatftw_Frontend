@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, SetStateAction } from "react";
+import { useState, useRef, useEffect } from "react";
 import styles from "./chatRoomMain.module.css";
 import send from "./Assets/Vector.svg";
 import smiley from "./Assets/smiley.svg";
@@ -16,23 +16,45 @@ const ChatRoom = () => {
   ]);
 
   // State for selected room
-  const [selectedRoom, setSelectedRoom] = useState(2);
+  const [selectedRoom, setSelectedRoom] = useState(1);
   const [channelSelect, setChannelSelect] = useState("chatRoom");
 
   // Function to handle selecting a room
-  const onSelectRoom = (roomId: SetStateAction<null>) => {
+  const onSelectRoom = (roomId: number) => {
     setChannelSelect("chatRoom");
     setSelectedRoom(roomId);
+    roomId == 1
+      ? setMessages(general)
+      : roomId == 2
+      ? setMessages(random)
+      : roomId == 3
+      ? setMessages(techTalk)
+      : "";
     // Additional logic if needed
   };
-
-  const [messages, setMessages] = useState([
+  const general = [
     { text: "Hello!", sender: "Rohan" },
     { text: "Hi there!", sender: "Don" },
     { text: "How are you?", sender: "Don" },
     { text: "I'm good, thanks!", sender: "You" },
     { text: "OKay!", sender: "Reo" },
-  ]);
+  ];
+  const random = [
+    { text: "Hellooooo", sender: "You" },
+    { text: "hey,wanna play minecraft", sender: "Don" },
+    { text: "I am in..", sender: "Blaze" },
+    { text: "Me too", sender: "You" },
+    { text: "Let's go...", sender: "Reo" },
+  ];
+  const techTalk = [
+    { text: "Hola", sender: "Jaggu" },
+    { text: "React++", sender: "Don" },
+    { text: "No way", sender: "Blaze" },
+    { text: "Lol!", sender: "You" },
+    { text: "very funny...", sender: "Reo" },
+  ];
+  const [messages, setMessages] = useState(general);
+
   const [inputValue, setInputValue] = useState("");
   const messagesEndRef = useRef<null | HTMLDivElement>(null);
 
