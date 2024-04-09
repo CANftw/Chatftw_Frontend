@@ -1,0 +1,233 @@
+.container {
+  font-size: 33.08px;
+  flex: 0.8;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  span {
+    font-size: 45px;
+    font-weight: 700;
+    color: #000000;
+  }
+}
+.captions {
+  height: 126.34px;
+  text-align: center;
+  align-content: start;
+  font-size: 30px;
+  font-weight: 300;
+  overflow: hidden;
+  span {
+    color: #ff682f;
+  }
+}
+.icons {
+  flex: 0.5;
+  width: 100%;
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  align-items: center;
+}
+.button {
+  opacity: 0;
+  transform: translateY(-30px);
+  animation: appear 1s 6s forwards;
+  overflow: hidden;
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    gap: 10px;
+    border-radius: 32px;
+    background: #ff682f;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: 400;
+    font-size: 18px;
+  }
+  button:hover {
+    background: #d25325;
+  }
+}
+.iconsimg {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 180px;
+  height: 180px;
+  border: 16.8px solid #1733b0;
+  border-radius: 90%;
+  img {
+    transition: src 0s 4s;
+  }
+}
+.lives {
+  position: absolute;
+  bottom: 125px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  gap: 500px;
+  span {
+    font-weight: 400;
+    font-size: 19.59px;
+    color: #1733b0;
+  }
+}
+.paddingAdjust {
+  padding-top: 40px;
+}
+.livesBot {
+  text-align: end;
+}
+.hearts {
+  box-sizing: border-box;
+  padding-top: 10px;
+  display: flex;
+  gap: 15px;
+}
+
+.slideToLeft {
+  opacity: 0;
+  animation: slideLeft 2s 2s forwards, vsAnimLeft 2s 4s forwards,
+    moveUpLeft 1s 6s forwards;
+}
+.slideToRight {
+  animation: slideRight 3s forwards, vsAnimRight 2s 4s forwards,
+    moveUpRight 1s 6s forwards;
+}
+.gap {
+  gap: 200px;
+}
+.firstText {
+  transform: translateY(0);
+}
+.secondText {
+  transform: translateY(-71px);
+}
+.fourthText {
+  transform: translateY(-80px);
+}
+.fifthText {
+  transform: translateY(-115px);
+}
+.firstText,
+.fourthText {
+  opacity: 0;
+  animation: appear 2s;
+}
+.secondText,
+.fifthText {
+  opacity: 0;
+  animation: appear 2s 2s;
+}
+.thirdText {
+  transform: translateY(-30px);
+  opacity: 0;
+  animation: appear 2s 6s forwards;
+}
+.loser {
+  animation: slideRight 3s forwards, scaleDownRight 2s 4s forwards,
+    moveUpRightLose 1s 6s forwards;
+}
+.loserBot {
+  animation: slideLeft 2s 2s forwards, scaleDownLeft 2s 4s forwards,
+    moveUpLeftLose 1s 6s forwards;
+}
+.lifeRemove {
+  animation: changeColor 2s 4s forwards;
+}
+.lifeZero {
+  animation: vanish 2s 8s forwards;
+}
+.resultText {
+  overflow: hidden;
+  transform: translateY(-300px);
+  opacity: 0;
+  animation: appear 2s 9s forwards;
+}
+.endButton {
+  animation: appear 2s 9s forwards;
+  transform: translateY(-100px);
+}
+.lifeZeroText {
+  animation: appear 2s 6s forwards, vanish 1s 8s forwards;
+}
+@keyframes vanish {
+  to {
+    opacity: 0;
+  }
+}
+@keyframes moveUpLeft {
+  to {
+    transform: translateX(-75px) translateY(-50px);
+  }
+}
+@keyframes moveUpRightLose {
+  to {
+    transform: translateX(110px) scale(0.5);
+  }
+}
+@keyframes moveUpLeftLose {
+  to {
+    transform: translateX(-110px) scale(0.5);
+  }
+}
+@keyframes moveUpRight {
+  to {
+    transform: translateX(75px) translateY(-50px);
+  }
+}
+@keyframes slideRight {
+  from {
+    transform: translateX(200px) scale(0);
+    opacity: 0;
+  }
+  70% {
+    transform: translateX(200px) scale(1);
+    opacity: 1;
+  }
+}
+@keyframes slideLeft {
+  from {
+    opacity: 0;
+    transform: translateX(200px);
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes appear {
+  to {
+    opacity: 1;
+  }
+}
+@keyframes scaleDownLeft {
+  to {
+    transform: scale(0.5) translateX(-225px);
+  }
+}
+@keyframes scaleDownRight {
+  to {
+    transform: scale(0.5) translateX(225px);
+  }
+}
+@keyframes vsAnimLeft {
+  to {
+    transform: translateX(-75px);
+  }
+}
+@keyframes vsAnimRight {
+  to {
+    transform: translateX(75px);
+  }
+}
+@keyframes changeColor {
+  to {
+    filter: grayscale(1);
+  }
+}
