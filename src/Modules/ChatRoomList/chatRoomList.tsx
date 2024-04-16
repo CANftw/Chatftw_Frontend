@@ -30,7 +30,7 @@ const ChatroomList = (props: Props) => {
       <div className={styles["chatroom-list"]}>
         <div
           className={`${styles.chatroom} ${
-            props.channelSelect === "rps" ? styles.selected : ""
+            props.channelSelect === "rps" ? styles.selectedGame : ""
           }`}
           onClick={() => props.setChannelSelect("rps")}
         >
@@ -38,11 +38,11 @@ const ChatroomList = (props: Props) => {
         </div>
         <div
           className={`${styles.chatroom} ${
-            props.channelSelect === "ttt" ? styles.selected : ""
+            props.channelSelect === "ttt" ? styles.selectedGame : ""
           }`}
           onClick={() => props.setChannelSelect("ttt")}
         >
-          Tic Tac Toe
+          Memory Game
         </div>
       </div>
     </>
