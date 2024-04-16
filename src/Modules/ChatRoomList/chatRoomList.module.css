@@ -4,7 +4,6 @@
   flex-direction: column;
   width: 75%;
 }
-
 .chatroom {
   width: 80%;
   padding: 10px 20px;
@@ -14,13 +13,20 @@
   border-bottom: 1px solid #b6cdd5;
   margin-bottom: 5px;
 }
-.chatroom:not(.selected):hover {
+.chatroom:not(.selected, .selectedGame):hover {
   border-radius: 8px;
   background-color: #f0f0f0;
 }
 
 .selected {
   background-color: #1c2e54;
+  color: #ffffff;
+  border: 0px, 0px, 1px, 0px;
+  border-radius: 8px;
+  transform: translateY(-2px);
+}
+.selectedGame {
+  background-color: #ff682f;
   color: #ffffff;
   border: 0px, 0px, 1px, 0px;
   border-radius: 8px;
