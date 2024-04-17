@@ -32,3 +32,15 @@
   border-radius: 8px;
   transform: translateY(-2px);
 }
+.botRoom {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.chatroomBot {
+  color: #2f5dff;
+}
+.selectedBot {
+  color: #ffffff;
+  background-color: #2f5dff;
+}
