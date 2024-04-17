@@ -13,7 +13,7 @@ export default function SignUp() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
-  const baseUrl = 'http://localhost:8080';
+  const baseUrl = 'http://localhost:8080/api/v1';
 
   const validateFields = () => {
     if (!username || !email || !password) {
@@ -29,7 +29,7 @@ export default function SignUp() {
     }
     try {
       // Make API call to your localhost
-      const response = await axios.post(`${baseUrl}/api/v1/auth/register`, {
+      const response = await axios.post(`${baseUrl}/auth/register`, {
         email: email,
         username: username,
         password: password
