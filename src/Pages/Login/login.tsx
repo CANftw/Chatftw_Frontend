@@ -18,10 +18,11 @@ export default function Login({ setIsLoggedIn }: { setIsLoggedIn: React.Dispatch
   const handleLogin = async () => {
     try {
       if (!email || !password) {
-        toast.error('Please enter both email and password');
+        toast.error('Please enter both email and password'); // Show error if email or password is empty
         return;
       }
 
+      // Send the user's credentials to the server for verification using Axios
       const response = await axios.post(
         `${baseUrl}/auth/login`,
         {
@@ -34,21 +35,23 @@ export default function Login({ setIsLoggedIn }: { setIsLoggedIn: React.Dispatch
           },
         }
       );
+      console.log(response);
 
-      const refreshToken = response.data.refreshToken;
+      // Extract the access token from the response
+      const accessToken = response.data.accessToken;
 
-      if (refreshToken) {
-        localStorage.setItem('refreshToken', refreshToken);
+      // Store the access token in the local storage
+      if (accessToken) {
+        localStorage.setItem('accessToken', accessToken);
+        setIsLoggedIn(true); // Call the parent function to set the logged-in state
       }
 
-      setIsLoggedIn(true);
-
-      navigate('/chatroom');
+      navigate('/chatroom'); // Redirect to the chatroom if login is successful
     } catch (error) {
       toast.error('Invalid username or password');
     }
   };
-  
+
   return (
     <div className={styles.login}>
       <div className={styles.loginBoundingbox}>

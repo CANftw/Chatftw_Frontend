@@ -1,4 +1,3 @@
-import "./App.css";
 import { useEffect, useState } from "react";
 import { RouterProvider, createBrowserRouter, Navigate } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
@@ -7,42 +6,50 @@ import Login from "./Pages/Login/login";
 import Signup from "./Pages/SignUp/signUp";
 import Chatroom from "./Pages/Chatroom/chatRoom";
 import Home from "./Pages/Home/Home";
+import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  console.log(isLoggedIn);
 
   useEffect(() => {
-    // Check if user is logged in by checking the existence of the refresh token
-    const data = localStorage.getItem('data');
-    const parsedData = data ? JSON.parse(data) : null;
-    const refreshToken = parsedData?.refreshToken;
-    setIsLoggedIn(!!refreshToken);
+    // Check if user is logged in by checking the existence of the access token
+    const accessToken = localStorage.getItem("accessToken");
+    setIsLoggedIn(!!accessToken); // Update isLoggedIn based on accessToken existence
   }, []);
 
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Navigate to="/home" />
+      element: <Navigate to="/home" />,
     },
     {
       path: "/home",
-      element: <Home />
+      element: <Home />,
     },
     {
       path: "/login",
-      element: <Login setIsLoggedIn={setIsLoggedIn} />
+      element: <Login setIsLoggedIn={setIsLoggedIn} />,
     },
     {
       path: "/signup",
-      element: <Signup />
+      element: <Signup />,
     },
     {
       path: "/chatroom",
-      element: isLoggedIn ? <Chatroom /> : <Navigate to="*" />
+      element: (
+        <PrivateRoute />
+      ),
+      children: [
+        {
+          index: true,
+          element: <Chatroom />
+        }
+      ]
     },
     {
       path: "*",
-element: <FourOFour />
+      element: <FourOFour />
     }
   ]);
 

@@ -11,11 +11,11 @@
   flex-direction: column;
 }
 
-h1 {
+.containerContent h1 {
   color: #ff682f;
   font-weight: 700;
 }
-p {
+.containerContent p {
   font-size: 23px;
   font-weight: 300;
 }
@@ -58,7 +58,7 @@ p {
   gap: 24px;
 }
 
-button {
+.containerInnerBoxes button {
   border: none;
   color: #ff682f;
   background-color: white;

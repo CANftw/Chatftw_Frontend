@@ -6,8 +6,16 @@ import ChatroomList from "../ChatRoomList/chatRoomList";
 import BackBtn from "../Button/backBtn";
 import RockPaperScissors from "../MiniGames/RockPaperScissors/rockPaperScissors";
 import MemoryGame from "../MiniGames/MemoryGame/memoryGame";
+import { useNavigate } from "react-router";
 
 const ChatRoom = () => {
+  const navigate = useNavigate();
+  
+  const handleBackBtnClick = () => {
+    localStorage.clear();
+    navigate("/login");
+  };
+    
   const [chatrooms] = useState([
     { id: 1, name: "General" },
     { id: 2, name: "Random" },
@@ -143,7 +151,7 @@ const ChatRoom = () => {
     <>
       <div className={styles.header}>
         <div className={styles.headerBack}>
-          <BackBtn name="Back" />
+          <BackBtn name="close" onClick={handleBackBtnClick} />
         </div>
         <div className={styles.headerTop}>
           <div className={styles.headerToplogo}>
