@@ -1,0 +1,95 @@
+.container {
+  flex: 0.8;
+}
+
+.containerInner {
+  height: 80vh;
+  gap: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+h1 {
+  color: #ff682f;
+  font-weight: 700;
+}
+p {
+  font-size: 23px;
+  font-weight: 300;
+}
+.containerContent {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.containerInnerBoxes {
+  display: flex;
+  width: 355px;
+  flex-wrap: wrap;
+  gap: 19px;
+}
+
+.boxes {
+  border-radius: 9.224px;
+  font-size: 180px;
+  height: 168px;
+  width: 168px;
+  background-color: #ff682f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffa380;
+  cursor: pointer;
+  user-select: none;
+}
+
+.boxes:hover {
+  background-color: #ff662f37;
+}
+
+.scorebutton {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 24px;
+}
+
+button {
+  border: none;
+  color: #ff682f;
+  background-color: white;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+button:hover {
+  background-color: #ffa48085;
+}
+
+.boxes:active {
+  color: #ffffff;
+  background-color: #ff682f;
+}
+
+.containerInnerScores {
+  display: flex;
+  gap: 32px;
+}
+
+.blink {
+  animation: blink-animation 0.5s;
+}
+
+@keyframes blink-animation {
+  from {
+    color: #ffa380;
+  }
+  to {
+    color: white;
+  }
+}
