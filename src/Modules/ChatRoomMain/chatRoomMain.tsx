@@ -20,7 +20,7 @@ const ChatRoom = () => {
     { id: 1, name: "General" },
     { id: 2, name: "Random" },
     { id: 3, name: "Tech Talk" },
-    // Add more chatrooms as needed
+    { id: 4, name: "Bot Room" },
   ]);
 
   // State for selected room
@@ -37,6 +37,8 @@ const ChatRoom = () => {
       ? setMessages(random)
       : roomId == 3
       ? setMessages(techTalk)
+      : roomId == 4
+      ? setMessages(botRoom)
       : "";
     // Additional logic if needed
   };
@@ -60,6 +62,10 @@ const ChatRoom = () => {
     { text: "No way", sender: "Blaze" },
     { text: "Lol!", sender: "You" },
     { text: "very funny...", sender: "Reo" },
+  ];
+  const botRoom = [
+    { text: "Hello", sender: "You" },
+    { text: "Hi!How can I help you today?", sender: "Bot" },
   ];
   const [messages, setMessages] = useState(general);
 
