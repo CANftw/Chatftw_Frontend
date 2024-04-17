@@ -38,9 +38,9 @@ const ChatroomList = (props: Props) => {
         </div>
         <div
           className={`${styles.chatroom} ${
-            props.channelSelect === "ttt" ? styles.selectedGame : ""
+            props.channelSelect === "mg" ? styles.selectedGame : ""
           }`}
-          onClick={() => props.setChannelSelect("ttt")}
+          onClick={() => props.setChannelSelect("mg")}
         >
           Memory Game
         </div>

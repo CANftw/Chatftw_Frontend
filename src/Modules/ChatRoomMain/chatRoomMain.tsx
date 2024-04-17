@@ -5,7 +5,7 @@ import smiley from "./Assets/smiley.svg";
 import ChatroomList from "../ChatRoomList/chatRoomList";
 import BackBtn from "../Button/backBtn";
 import RockPaperScissors from "../MiniGames/RockPaperScissors/rockPaperScissors";
-import MemoryGame from "../MiniGames/TicTacToe/memoryGame";
+import MemoryGame from "../MiniGames/MemoryGame/memoryGame";
 
 const ChatRoom = () => {
   const [chatrooms] = useState([
@@ -135,7 +135,7 @@ const ChatRoom = () => {
     );
   } else if (channelSelect == "rps") {
     mainSection = <RockPaperScissors />;
-  } else if (channelSelect == "ttt") {
+  } else if (channelSelect == "mg") {
     mainSection = <MemoryGame />;
   }
 
