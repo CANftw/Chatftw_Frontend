@@ -1,4 +1,5 @@
 import "./App.css";
+import { useEffect, useState } from "react";
 import { RouterProvider, createBrowserRouter, Navigate } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import FourOFour from "./Pages/FourOFour/FourOFour";
@@ -8,6 +9,16 @@ import Chatroom from "./Pages/Chatroom/chatRoom";
 import Home from "./Pages/Home/Home";
 
 function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    // Check if user is logged in by checking the existence of the refresh token
+    const data = localStorage.getItem('data');
+    const parsedData = data ? JSON.parse(data) : null;
+    const refreshToken = parsedData?.refreshToken;
+    setIsLoggedIn(!!refreshToken);
+  }, []);
+
   const router = createBrowserRouter([
     {
       path: "/",
@@ -19,7 +30,7 @@ function App() {
     },
     {
       path: "/login",
-      element: <Login />
+      element: <Login setIsLoggedIn={setIsLoggedIn} />
     },
     {
       path: "/signup",
@@ -27,14 +38,13 @@ function App() {
     },
     {
       path: "/chatroom",
-      element: <Chatroom />
+      element: isLoggedIn ? <Chatroom /> : <Navigate to="*" />
     },
     {
       path: "*",
-      element: <FourOFour />
+element: <FourOFour />
     }
   ]);
-
 
   return (
     <>
@@ -45,4 +55,3 @@ function App() {
 }
 
 export default App;
-

@@ -9,7 +9,7 @@ import LoginImage from './Assets/Frame 55.png';
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
 
-export default function Login() {
+export default function Login({ setIsLoggedIn }: { setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>> }) {
   const navigate = useNavigate();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -18,28 +18,37 @@ export default function Login() {
   const handleLogin = async () => {
     try {
       if (!email || !password) {
-        toast.error('Please enter both email and password');  // show error if  email or password is empty
+        toast.error('Please enter both email and password');
         return;
       }
 
-      // Send the user's credentials to the server for verification using Axios
-      const response = await axios.post(`${baseUrl}/auth/login`, {
-        email,
-        password
-      },
-      {
-        headers: {
-          'Content-Type': 'application/json'
+      const response = await axios.post(
+        `${baseUrl}/auth/login`,
+        {
+          email,
+          password,
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+          },
         }
-      });
-      console.log(response)
-      
-      navigate('/chatroom');// Redirect to the chatroom if login is successful
+      );
+
+      const refreshToken = response.data.refreshToken;
+
+      if (refreshToken) {
+        localStorage.setItem('refreshToken', refreshToken);
+      }
+
+      setIsLoggedIn(true);
+
+      navigate('/chatroom');
     } catch (error) {
       toast.error('Invalid username or password');
     }
   };
-
+  
   return (
     <div className={styles.login}>
       <div className={styles.loginBoundingbox}>
