@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
+import  { useState } from "react";
 import styles from "./memoryGame.module.css";
 
 function MemoryGame() {
-  const [sequence, setSequence] = useState([]);
+  const [sequence, setSequence] = useState<string[]>([]);
   const [currentScore, setCurrentScore] = useState(0);
   const [highScore, setHighScore] = useState(0);
-  const [userInput, setUserInput] = useState([]);
+  const [userInput, setUserInput] = useState<string[]>([]);
   const [gameOver, setGameOver] = useState(false);
   
   const startNewRound = () => {
@@ -23,7 +23,7 @@ function MemoryGame() {
 
   };
 
-  const animateSequence = (sequence) => {
+  const animateSequence = (sequence:string[]) => {
     let i = 0;
     const intervalId = setInterval(() => {
       blinkButton(sequence[i]);
@@ -34,7 +34,7 @@ function MemoryGame() {
     }, 1000);
   };
 
-  const blinkButton = (button) => {
+  const blinkButton = (button:string) => {
     const buttonElement = document.getElementById(button);
     if (buttonElement) {
       buttonElement.classList.add(styles.blink);
@@ -44,7 +44,7 @@ function MemoryGame() {
     }
   };
 
-  const handleButtonClick = (button: any) => {
+  const handleButtonClick = (button: string) => {
     if (!gameOver) {
       setUserInput([...userInput, button]);
       if (button !== sequence[userInput.length]) {
