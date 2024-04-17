@@ -40,7 +40,7 @@ const ChatRoom = () => {
       : roomId == 4
       ? setMessages(botRoom)
       : "";
-    // Additional logic if needed
+    
   };
   const general = [
     { text: "Hello!", sender: "Rohan" },

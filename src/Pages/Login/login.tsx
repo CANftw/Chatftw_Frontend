@@ -37,13 +37,11 @@ export default function Login({ setIsLoggedIn }: { setIsLoggedIn: React.Dispatch
       );
       console.log(response);
 
-      // Extract the access token from the response
       const accessToken = response.data.accessToken;
 
-      // Store the access token in the local storage
       if (accessToken) {
         localStorage.setItem('accessToken', accessToken);
-        setIsLoggedIn(true); // Call the parent function to set the logged-in state
+        setIsLoggedIn(true); 
       }
 
       navigate('/chatroom'); // Redirect to the chatroom if login is successful

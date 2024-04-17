@@ -44,7 +44,7 @@ export default function SignUp() {
       if (response.status === 200) {
         navigate('/login');
       } else {
-        // Handle other cases
+      //something
       }
     } catch (error) {
       toast.error('Error Signing Up');
