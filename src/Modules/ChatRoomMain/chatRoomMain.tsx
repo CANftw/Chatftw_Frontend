@@ -11,10 +11,10 @@ import { socket } from "./socket";
 import { useNavigate } from "react-router";
 
 
-interface Message {
-  text: string;
-  sender: string;
-}
+// interface Message {
+//   text: string;
+//   sender: string;
+// }
 
 const ChatRoom = () => {
   const navigate = useNavigate();
@@ -71,6 +71,12 @@ const ChatRoom = () => {
     { text: "Lol!", sender: "You" },
     { text: "very funny...", sender: "Reo" },
   ]);
+
+  console.log(setGeneral);
+  console.log(setRandom);
+  console.log(setTechTalk);
+  
+  
   const botRoom = [
     { text: "Hello", sender: "You" },
     { text: "Hi!How can I help you today?", sender: "Bot" },

@@ -11,7 +11,7 @@ function MemoryGame() {
   const startNewRound = () => {
     setUserInput([]);
     setGameOver(false);
-    let newSequence = [...sequence, generateRandomButton()];
+    const newSequence = [...sequence, generateRandomButton()];
     setSequence(newSequence);
     console.log(newSequence);
     animateSequence(newSequence); 
