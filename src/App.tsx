@@ -7,6 +7,7 @@ import Signup from "./Pages/SignUp/signUp";
 import Chatroom from "./Pages/Chatroom/chatRoom";
 import Home from "./Pages/Home/Home";
 import PrivateRoute from "./components/PrivateRoute";
+import "./App.css"
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);

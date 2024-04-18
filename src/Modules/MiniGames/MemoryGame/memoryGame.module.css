@@ -58,7 +58,7 @@
   gap: 24px;
 }
 
-.containerInnerBoxes button {
+.startButton {
   border: none;
   color: #ff682f;
   background-color: white;
