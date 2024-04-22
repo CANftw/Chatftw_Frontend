@@ -10,7 +10,6 @@ import MemoryGame from "../MiniGames/MemoryGame/memoryGame";
 import { socket } from "./socket";
 import { useNavigate } from "react-router";
 
-
 // interface Message {
 //   text: string;
 //   sender: string;
@@ -27,7 +26,6 @@ const ChatRoom = () => {
     { id: 1, name: "General" },
     { id: 2, name: "Random" },
     { id: 3, name: "Tech Talk" },
-    { id: 4, name: "Bot Room" },
   ]);
 
   // State for selected room
@@ -42,12 +40,10 @@ const ChatRoom = () => {
     roomId == 1
       ? setMessages(general)
       : roomId == 2
-        ? setMessages(random)
-        : roomId == 3
-          ? setMessages(techTalk)
-          : roomId == 4
-            ? setMessages(botRoom)
-            : "";
+      ? setMessages(random)
+      : roomId == 3
+      ? setMessages(techTalk)
+      : "";
     // Additional logic if needed
   };
   const [general, setGeneral] = useState([
@@ -71,16 +67,15 @@ const ChatRoom = () => {
     { text: "Lol!", sender: "You" },
     { text: "very funny...", sender: "Reo" },
   ]);
+  const [botMessages, setBotMessages] = useState([
+    { text: "Hello", sender: "You" },
+    { text: "Hi!How can I help you today?", sender: "Bot" },
+  ]);
 
   console.log(setGeneral);
   console.log(setRandom);
   console.log(setTechTalk);
-  
-  
-  const botRoom = [
-    { text: "Hello", sender: "You" },
-    { text: "Hi!How can I help you today?", sender: "Bot" },
-  ];
+
   const [messages, setMessages] = useState(general);
 
   const [inputValue, setInputValue] = useState("");
@@ -101,7 +96,16 @@ const ChatRoom = () => {
   };
   const generateRandomName = () => {
     // List of possible names
-    const names = ['John', 'Alice', 'Bob', 'Emma', 'Mike', 'Sarah', 'David', 'Emily'];
+    const names = [
+      "John",
+      "Alice",
+      "Bob",
+      "Emma",
+      "Mike",
+      "Sarah",
+      "David",
+      "Emily",
+    ];
 
     // Select a random name from the list
     const randomIndex = Math.floor(Math.random() * names.length);
@@ -122,10 +126,20 @@ const ChatRoom = () => {
         text: inputValue,
         sender: randomName,
       };
-      setMessages([...messages, newMessage]);
-      setInputValue("");
-      socket.emit("message", chatrooms[selectedRoom - 1].name, randomName, inputValue);
 
+      if (channelSelect == "chatRoom") {
+        setMessages([...messages, newMessage]);
+        setInputValue("");
+        socket.emit(
+          "message",
+          chatrooms[selectedRoom - 1].name,
+          randomName,
+          inputValue
+        );
+      } else if (channelSelect == "chatBot") {
+        setBotMessages([...botMessages, newMessage]);
+        setInputValue("");
+      }
     }
   };
 
@@ -184,12 +198,55 @@ const ChatRoom = () => {
   } else if (channelSelect == "mg") {
     mainSection = <MemoryGame />;
   }
-
+  if (channelSelect == "chatBot") {
+    mainSection = (
+      <div className={styles.chatRoom}>
+        <div className={styles.chatRoomContainer}>
+          {botMessages.map((message, index) => (
+            <div key={index} className={styles.chatRoomContainerMessage}>
+              {index === 0 ||
+              botMessages[index - 1].sender !== message.sender ? (
+                <div
+                  className={styles.chatRoomContainerMessageSender}
+                  style={{ color: getColorForUser(message.sender) }}
+                >
+                  {message.sender === randomName ? `You` : `${message.sender}`}
+                </div>
+              ) : null}
+              <div className={styles.chatRoomContainerMessageText}>
+                {message.text}
+              </div>
+            </div>
+          ))}
+          <div ref={messagesEndRef} />
+        </div>
+        <div className={styles.chatRoomChatbox}>
+          <div className={styles.chatRoomChatboxSendbutton}>
+            <img src={smiley} />
+          </div>
+          <input
+            type="text"
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+            onKeyDown={handleKeyPress}
+            placeholder="Type your message..."
+            className={styles.chatRoomChatboxInput}
+          />
+          <button
+            onClick={handleMessageSend}
+            className={styles.chatRoomChatboxSendbutton}
+          >
+            <img src={send} />
+          </button>
+        </div>
+      </div>
+    );
+  }
   socket.on("message", (room, user, message) => {
     if (room === chatrooms[selectedRoom - 1].name) {
       setMessages([...messages, { text: message, sender: user }]);
     }
-  })
+  });
 
   useEffect(() => {
     setRandomName(generateRandomName());
@@ -201,7 +258,6 @@ const ChatRoom = () => {
 
     return () => {
       window.removeEventListener("beforeunload", handleBeforeUnload);
-
     };
   }, []);
 

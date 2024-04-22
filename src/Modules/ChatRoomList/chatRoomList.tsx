@@ -54,22 +54,15 @@ const ChatroomList = (props: Props) => {
         <br />
         <br />
         <div
-          key="4"
           className={`${styles.chatroom} ${styles.chatroomBot} ${
-            props.selectedRoom === 4 && props.channelSelect === "chatRoom"
+            props.channelSelect === "chatBot"
               ? `${styles.selected} ${styles.selectedBot}`
               : ""
           }`}
-          onClick={() => props.onSelectRoom(4)}
+          onClick={() => props.setChannelSelect("chatBot")}
         >
           <div className={styles.botRoom}>
-            <img
-              src={
-                props.selectedRoom === 4 && props.channelSelect === "chatRoom"
-                  ? botWhite
-                  : bot
-              }
-            />
+            <img src={props.channelSelect === "chatBot" ? botWhite : bot} />
             <div>Bot Room</div>
           </div>
         </div>
