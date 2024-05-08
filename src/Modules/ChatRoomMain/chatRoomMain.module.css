@@ -72,7 +72,7 @@
 }
 
 .chatRoomContainerMessage {
-  width: 900px;
+  max-width: 900px;
   margin-bottom: 5px;
   overflow-wrap: break-word;
 }
@@ -84,7 +84,7 @@
 
 .chatRoomChatbox {
   width: 75vw;
-  height: 45px;
+  max-height: 45px;
   border-radius: 16px;
   background: #fff;
   box-shadow: -15px 27px 44.6px 0px rgba(182, 205, 213, 0.5);
@@ -96,7 +96,7 @@
 }
 
 .chatRoomChatboxInput {
-  width: 1000px;
+  max-width: 1000px;
   height: 100%;
   margin-bottom: 0;
   border: none;
@@ -127,4 +127,19 @@
   width: 100vw;
   height: 85vh;
   max-width: 100%;
+}
+
+@media (max-width: 1280px) {
+  .list {
+    display: none;
+  }
+  .headerBack {
+    display: none;
+  }
+  .bottom {
+    justify-content: center;
+  }
+  .chatRoom {
+    flex: 0.8;
+  }
 }
