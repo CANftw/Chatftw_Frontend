@@ -9,12 +9,14 @@ import MemoryGame from "../MiniGames/MemoryGame/memoryGame";
 import axios from "axios";
 import { socket } from "./socket";
 import { useNavigate } from "react-router";
-
+import { chat } from '../../utils/gemini'
 // interface Message {
 //   text: string;
 //   sender: string;
 // }
-
+interface Questions {
+  [key: string]: any; // This is an index signature
+}
 const ChatRoom = () => {
   const navigate = useNavigate();
 
@@ -25,7 +27,7 @@ const ChatRoom = () => {
   const [chatrooms] = useState([
     { id: 1, name: "General" },
     { id: 2, name: "Random" },
-    { id: 3, name: "Tech Talk" },
+    { id: 3, name: "TechTalk" },
   ]);
   const baseUrl = "http://localhost:8080/api/v1";
   // State for selected room
@@ -33,7 +35,6 @@ const ChatRoom = () => {
   const [channelSelect, setChannelSelect] = useState("chatRoom");
   const [randomName, setRandomName] = useState("");
   const [accessToken] = useState(localStorage.getItem("accessToken"));
-  console.log(accessToken);
   // Function to handle selecting a room
   const onSelectRoom = (roomId: number) => {
     setChannelSelect("chatRoom");
@@ -92,13 +93,14 @@ const ChatRoom = () => {
         },
       });
       const updatedArray = messages.concat(
-        response.data.messages.map((item: any) => ({
+        response.data.map((item: any) => ({
           text: item.message,
           sender: item.username,
         }))
       );
       setMessages(updatedArray);
     };
+
     messageFill();
   }, [selectedRoom]);
   useEffect(() => {
@@ -136,29 +138,35 @@ const ChatRoom = () => {
     return combinedName;
   };
 
-  const questions = {
-    "hello": "Hello! 👋 Welcome to Hermesphere. How can I help you today? ",
-    "hi": "Hello! 👋 Welcome to Hermesphere. How can I help you today? ",
-    "what is Hermesphere": " Hermesphere is a secure and anonymous chat platform designed for open communication and entertainment. It offers features like encrypted messaging, anonymous profiles, and fun games, making it the perfect place to express yourself freely and connect with others.",
-    "what is hermesphere": " Hermesphere is a secure and anonymous chat platform designed for open communication and entertainment. It offers features like encrypted messaging, anonymous profiles, and fun games, making it the perfect place to express yourself freely and connect with others.",
-    "how to access game room": "Navigating to the Game Room is easy!\n 1)Look to the left side of the interface. You'll find a list of available rooms there. \n 2) Select the game you'd like to play from the Room list.\n 3)Start playing and have fun! 🎉",
-    "how to access gameroom": "Navigating to the Game Room is easy!\n 1)Look to the left side of the interface. You'll find a list of available rooms there. \n 2) Select the game you'd like to play from the Room list.\n 3)Start playing and have fun! 🎉",
-    "is hermesphere for chatting" : "Absolutely! 💬 Hermesphere is perfect for casual chats, deep discussions, or just sharing your thoughts and feelings. What would you like to talk about?",
-    "is there only chatting": "Besides chatting, Hermesphere offers a Game Room where you can enjoy light-hearted games with other users. 🎮 It's a great way to take a break, have some fun, and connect with people in a relaxed setting.\n Would you like to explore the Game Room or continue chatting?",
-    "how does it support privacy" : "Hermesphere takes your privacy seriously and employs several measures to ensure it: 1) Anonymity 2)JWT Authentication 3)Aes and Bcrypt encryption"
-  };
+  // const questions: Questions = {
+  //   "hello": "Hello! 👋 Welcome to Hermesphere. How can I help you today? ",
+  //   "hi": "Hello! 👋 Welcome to Hermesphere. How can I help you today? ",
+  //   "what is Hermesphere": " Hermesphere is a secure and anonymous chat platform designed for open communication and entertainment. It offers features like encrypted messaging, anonymous profiles, and fun games, making it the perfect place to express yourself freely and connect with others.",
+  //   "what is hermesphere": " Hermesphere is a secure and anonymous chat platform designed for open communication and entertainment. It offers features like encrypted messaging, anonymous profiles, and fun games, making it the perfect place to express yourself freely and connect with others.",
+  //   "how to access game room": "Navigating to the Game Room is easy!\n 1)Look to the left side of the interface. You'll find a list of available rooms there. \n 2) Select the game you'd like to play from the Room list.\n 3)Start playing and have fun! 🎉",
+  //   "how to access gameroom": "Navigating to the Game Room is easy!\n 1)Look to the left side of the interface. You'll find a list of available rooms there. \n 2) Select the game you'd like to play from the Room list.\n 3)Start playing and have fun! 🎉",
+  //   "is hermesphere for chatting" : "Absolutely! 💬 Hermesphere is perfect for casual chats, deep discussions, or just sharing your thoughts and feelings. What would you like to talk about?",
+  //   "is there only chatt    ing": "Besides chatting, Hermesphere offers a Game Room where you can enjoy light-hearted games with other users. 🎮 It's a great way to take a break, have some fun, and connect with people in a relaxed setting. Would you like to explore the Game Room or continue chatting?",
+  //   "how does it support privacy" : "Hermesphere takes your privacy seriously and employs several measures to ensure it: 1) Anonymity 2)JWT Authentication 3)Aes and Bcrypt encryption"
+  // };
 
-  const getBotResponse = (message: string) => {
-    const lowerCaseMessage = message.toLowerCase();
-    for (const question in questions) {
-      if (lowerCaseMessage.includes(question)) {
-        return questions[question];
-      }
+  const getBotResponse = async (message: string): Promise<string> => {
+    // const lowerCaseMessage = message.toLowerCase();
+    // for (const question in questions) {
+    //   if (lowerCaseMessage.includes(question)) {
+    //     return questions[question];
+    //   }
+    // }
+    try{
+    const result = await chat.sendMessage(message);
+    return (result.response.text())
+    }catch(e){
+      console.log(e);
+      return "I'm sorry, I don't understand. Could you please rephrase your question?";
     }
-    return "I didn't understand that. Can you please rephrase?";
   };
 
-  const handleMessageSend = () => {
+  const handleMessageSend = async () => {
     if (inputValue.trim()!== "") {
       const newMessage = {
         text: inputValue,
@@ -176,7 +184,7 @@ const ChatRoom = () => {
         );
       } else if (channelSelect == "chatBot") {
         const botResponse = getBotResponse(inputValue);
-        setBotMessages([...botMessages, newMessage, { text: botResponse, sender: "Bot" }]);
+        setBotMessages([...botMessages, newMessage, { text: await botResponse, sender: "Bot" }]);
         setInputValue("");
       }
     }
