@@ -81,8 +81,7 @@ const ChatRoom = () => {
   const [inputValue, setInputValue] = useState("");
   const messagesEndRef = useRef<null | HTMLDivElement>(null);
 
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  const scrollToBottom = () => {messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
   useEffect(() => {
@@ -120,8 +119,30 @@ const ChatRoom = () => {
     return combinedName;
   };
 
+  const questions = {
+    "hello": "Hello! 👋 Welcome to Hermesphere. How can I help you today? ",
+    "hi": "Hello! 👋 Welcome to Hermesphere. How can I help you today? ",
+    "what is Hermesphere": " Hermesphere is a secure and anonymous chat platform designed for open communication and entertainment. It offers features like encrypted messaging, anonymous profiles, and fun games, making it the perfect place to express yourself freely and connect with others.",
+    "what is hermesphere": " Hermesphere is a secure and anonymous chat platform designed for open communication and entertainment. It offers features like encrypted messaging, anonymous profiles, and fun games, making it the perfect place to express yourself freely and connect with others.",
+    "how to access game room": "Navigating to the Game Room is easy!\n 1)Look to the left side of the interface. You'll find a list of available rooms there. \n 2) Select the game you'd like to play from the Room list.\n 3)Start playing and have fun! 🎉",
+    "how to access gameroom": "Navigating to the Game Room is easy!\n 1)Look to the left side of the interface. You'll find a list of available rooms there. \n 2) Select the game you'd like to play from the Room list.\n 3)Start playing and have fun! 🎉",
+    "is hermesphere for chatting" : "Absolutely! 💬 Hermesphere is perfect for casual chats, deep discussions, or just sharing your thoughts and feelings. What would you like to talk about?",
+    "is there only chatting": "Besides chatting, Hermesphere offers a Game Room where you can enjoy light-hearted games with other users. 🎮 It's a great way to take a break, have some fun, and connect with people in a relaxed setting.\n Would you like to explore the Game Room or continue chatting?",
+    "how does it support privacy" : "Hermesphere takes your privacy seriously and employs several measures to ensure it: 1) Anonymity 2)JWT Authentication 3)Aes and Bcrypt encryption"
+  };
+
+  const getBotResponse = (message: string) => {
+    const lowerCaseMessage = message.toLowerCase();
+    for (const question in questions) {
+      if (lowerCaseMessage.includes(question)) {
+        return questions[question];
+      }
+    }
+    return "I didn't understand that. Can you please rephrase?";
+  };
+
   const handleMessageSend = () => {
-    if (inputValue.trim() !== "") {
+    if (inputValue.trim()!== "") {
       const newMessage = {
         text: inputValue,
         sender: randomName,
@@ -137,7 +158,8 @@ const ChatRoom = () => {
           inputValue
         );
       } else if (channelSelect == "chatBot") {
-        setBotMessages([...botMessages, newMessage]);
+        const botResponse = getBotResponse(inputValue);
+        setBotMessages([...botMessages, newMessage, { text: botResponse, sender: "Bot" }]);
         setInputValue("");
       }
     }
@@ -155,13 +177,13 @@ const ChatRoom = () => {
         <div className={styles.chatRoomContainer}>
           {messages.map((message, index) => (
             <div key={index} className={styles.chatRoomContainerMessage}>
-              {index === 0 || messages[index - 1].sender !== message.sender ? (
+              {index === 0 || messages[index - 1].sender!== message.sender? (
                 <div
                   className={styles.chatRoomContainerMessageSender}
                   style={{ color: getColorForUser(message.sender) }}
                 >
                   {message.sender === randomName
-                    ? `${randomName} (Me)`
+                   ? `${randomName} (Me)`
                     : `${message.sender}`}
                 </div>
               ) : null}
@@ -204,13 +226,12 @@ const ChatRoom = () => {
         <div className={styles.chatRoomContainer}>
           {botMessages.map((message, index) => (
             <div key={index} className={styles.chatRoomContainerMessage}>
-              {index === 0 ||
-              botMessages[index - 1].sender !== message.sender ? (
+              {index === 0 || botMessages[index - 1].sender!== message.sender? (
                 <div
                   className={styles.chatRoomContainerMessageSender}
                   style={{ color: getColorForUser(message.sender) }}
                 >
-                  {message.sender === randomName ? `You` : `${message.sender}`}
+                  {message.sender === randomName?`You` : `${message.sender}`}
                 </div>
               ) : null}
               <div className={styles.chatRoomContainerMessageText}>
