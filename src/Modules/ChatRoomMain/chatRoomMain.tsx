@@ -6,7 +6,7 @@ import ChatroomList from "../ChatRoomList/chatRoomList";
 import BackBtn from "../Button/backBtn";
 import RockPaperScissors from "../MiniGames/RockPaperScissors/rockPaperScissors";
 import MemoryGame from "../MiniGames/MemoryGame/memoryGame";
-
+import axios from "axios";
 import { socket } from "./socket";
 import { useNavigate } from "react-router";
 
@@ -27,12 +27,13 @@ const ChatRoom = () => {
     { id: 2, name: "Random" },
     { id: 3, name: "Tech Talk" },
   ]);
-
+  const baseUrl = "http://localhost:8080/api/v1";
   // State for selected room
   const [selectedRoom, setSelectedRoom] = useState(1);
   const [channelSelect, setChannelSelect] = useState("chatRoom");
   const [randomName, setRandomName] = useState("");
-
+  const [accessToken] = useState(localStorage.getItem("accessToken"));
+  console.log(accessToken);
   // Function to handle selecting a room
   const onSelectRoom = (roomId: number) => {
     setChannelSelect("chatRoom");
@@ -72,10 +73,6 @@ const ChatRoom = () => {
     { text: "Hi!How can I help you today?", sender: "Bot" },
   ]);
 
-  console.log(setGeneral);
-  console.log(setRandom);
-  console.log(setTechTalk);
-
   const [messages, setMessages] = useState(general);
 
   const [inputValue, setInputValue] = useState("");
@@ -84,14 +81,34 @@ const ChatRoom = () => {
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
-
+  useEffect(() => {
+    const messageFill = async () => {
+      let channel;
+      if (selectedRoom == 1) channel = "General";
+      else if (selectedRoom == 2) channel = "Random";
+      else channel = "TechTalk";
+      const response = await axios.get(`${baseUrl}/messages/${channel}`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+      const updatedArray = messages.concat(
+        response.data.messages.map((item: any) => ({
+          text: item.message,
+          sender: item.username,
+        }))
+      );
+      setMessages(updatedArray);
+    };
+    messageFill();
+  }, [selectedRoom]);
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
 
   const getColorForUser = (username: string) => {
     const colors = ["#FF2F2F", "#5519FF", "#1922FF", "#1993FF"];
-    const index = username.charCodeAt(0) % colors.length;
+    const index = username?.charCodeAt(0) % colors.length;
     return colors[index];
   };
   const generateRandomName = () => {
