@@ -1,30 +1,12 @@
-# React + TypeScript + Vite
+# Hermesphere
+Your gateway to secure communication, real-time chat, and AI-powered interactions. Join the sphere! :globe_with_meridians::rocket:
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+1. **Truly Anonymous Chatroom**: Hermesphere introduces a chatroom where users remain anonymous. Upon logging in, each user receives a random username—no profiles, no personal information. Share ideas, discuss topics, and connect without revealing identities.
 
-Currently, two official plugins are available:
+2. **AI Chatbot**: Our intelligent companion is more than just a chatterbox. Powered by advanced AI, it understands context, provides relevant answers, and even cracks a joke or two. Conversations with our chatbot feel refreshingly human.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+3. **Mini Games**: Bored during downtime? Hermesphere spices things up with mini games. Challenge friends or play solo—whether it's a game of Rock-Paper-Scissors, memory challenges, or other surprises, fun awaits!
 
-## Expanding the ESLint configuration
+4. **Real-Time Communication**: WebSockets keep conversations flowing seamlessly. Whether you're sharing updates, collaborating on a project, or just saying hello, Hermesphere ensures real-time interactions.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Join the sphere and experience a digital world where privacy meets intelligence! :globe_with_meridians::rocket:
